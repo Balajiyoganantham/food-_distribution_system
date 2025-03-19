@@ -117,9 +117,4 @@ flask run
 ✅ **Multi-language support**  
 ✅ **Mobile app version**  
 
----
 
-
----
-
-This **README** provides complete documentation, covering setup, features, and API details. Let me know if you want modifications! 🚀
