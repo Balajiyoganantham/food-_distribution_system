@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Food List{% endblock %}
+{% block content %}
+<h2 class="mb-4">Available Food Donations</h2>
+{% if donations %}
+  <div class="list-group">
+    {% for donation in donations %}
+      {# Default color is dark (normal) #}
+      {% set status_color = "text-dark" %}
+      {# If donation has expired, use red color #}
+      {% if donation.expiry_date < current_time %}
+        {% set status_color = "text-danger" %}
+      {# Else if quantity is 40 or more, use green color #}
+      {% elif donation.quantity >= 40 %}
+        {% set status_color = "text-success" %}
+      {% endif %}
+      <div class="list-group-item list-group-item-action {{ status_color }}">
+        <h5 class="mb-1">{{ donation.food_type }}</h5>
+        <p class="mb-1">
+          <strong>Quantity:</strong> {{ donation.quantity }}<br>
+          <strong>Location:</strong> {{ donation.location }}<br>
+          <strong>Expiry:</strong> {{ donation.expiry_date }}<br>
+          <strong>Date:</strong> {{ donation.created_at }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No available food donations at this time.</p>
+{% endif %}
+{% endblock %}
